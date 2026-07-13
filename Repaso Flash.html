@@ -1,156 +1,385 @@
-<div style="display:flex; flex-direction:column; gap:20px; padding:1.5rem 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <h2 class="sr-only">Cuestionario interactivo de repaso de Programación II con 28 preguntas de opción múltiple y corrección automática</h2>
+<div style="display:flex; flex-direction:column; gap:28px; padding:1.5rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0f172a; color: #f1f5f9; min-height: 100vh;">
+  <h2 class="sr-only">Repaso visual interactivo de Programación II: tocá cada tarjeta para desplegar el detalle</h2>
 
-  <div id="score-bar" style="display:flex; align-items:center; justify-content:between; background:rgba(var(--surface-1-rgb, 255, 255, 255), 0.85); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid var(--border, #e2e8f0); border-radius:14px; padding:14px 20px; position:sticky; top:12px; z-index:10; box-shadow:0 4px 20px -2px rgba(0,0,0,0.05);">
-    <div style="display:flex; flex-direction:column; gap:2px;">
-      <span id="score-text" style="font-size:13px; font-weight:600; color:var(--text-main, #1e293b)">0 / 28 respondidas</span>
-      <span style="font-size:11px; color:var(--text-secondary, #64748b)">Progreso de repaso</span>
+  <div>
+    <p style="font-size:13px; font-weight:600; color:#94a3b8; margin:0 0 12px; text-transform: uppercase; letter-spacing: 0.05em;">Patrones de diseño — tocá cada uno</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:10px" id="patrones">
+      <div class="acc" data-tone="warning">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Singleton</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Garantiza que exista una única instancia de un objeto. Se implementa con constructor privado, atributo estático y privado, y un método estático y público para obtener la instancia. Nivel de uso: muy alto.</p>
+      </div>
+      <div class="acc" data-tone="warning">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Factory Method</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Define una interfaz estándar para crear objetos de una familia, sin exponer la clase concreta que se instancia. Nivel de uso: alto. Tiene una variante llamada Simple Factory.</p>
+      </div>
+      <div class="acc" data-tone="warning">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Abstract Factory</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Centraliza la fabricación de objetos de distintas familias en un solo lugar. Nivel de uso: bajo, visto como introducción en la materia.</p>
+      </div>
+      <div class="acc" data-tone="accent">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Adapter</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Adapta un objeto o interfaz para que pueda ser usado por otro objeto que, de otro modo, no podría usarlo. Nivel de uso: muy alto.</p>
+      </div>
+      <div class="acc" data-tone="accent">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Composite</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Permite tratar a objetos simples y a objetos compuestos de la misma manera, simplificando el código que los usa. Nivel de uso: medio.</p>
+      </div>
+      <div class="acc" data-tone="accent">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Proxy</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Provee un sustituto de otro objeto y controla el acceso a él, permitiendo hacer algo antes o después de que la solicitud llegue al objeto original.</p>
+      </div>
+      <div class="acc" data-tone="success">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>State</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Se usa cuando un objeto necesita modificar su comportamiento cada vez que cambia su estado interno. Nivel de uso: alto.</p>
+      </div>
+      <div class="acc" data-tone="success">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Strategy</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Permite disponer de varios métodos o algoritmos para resolver un problema, y elegir cuál usar en tiempo de ejecución. Nivel de uso: alto.</p>
+      </div>
+      <div class="acc" data-tone="success">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Observer</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Define una dependencia entre un sujeto y muchos observadores: cuando el sujeto cambia de estado, todos los observadores se actualizan automáticamente. Nivel de uso: alto.</p>
+      </div>
+      <div class="acc" data-tone="success">
+        <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Command</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Encapsula una operación dentro de un objeto, permitiendo ejecutarla sin que quien la invoca conozca su contenido. Nivel de uso: medio.</p>
+      </div>
     </div>
-    <span id="score-correct" style="font-size:14px; font-weight:700; color:#10b981; background:rgba(16,185,129,0.1); padding:6px 12px; border-radius:20px;">0 correctas</span>
+    <div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:12px; font-size:12px; color:#94a3b8">
+      <span style="display:flex; align-items:center;"><span style="display:inline-block; width:10px; height:10px; border-radius:3px; background:#eab308; margin-right:6px"></span>Creacionales</span>
+      <span style="display:flex; align-items:center;"><span style="display:inline-block; width:10px; height:10px; border-radius:3px; background:#3b82f6; margin-right:6px"></span>Estructurales</span>
+      <span style="display:flex; align-items:center;"><span style="display:inline-block; width:10px; height:10px; border-radius:3px; background:#10b981; margin-right:6px"></span>Comportamiento</span>
+    </div>
   </div>
 
-  <div id="quiz" style="display:flex; flex-direction:column; gap:16px;"></div>
+  <div>
+    <p style="font-size:13px; font-weight:600; color:#94a3b8; margin:0 0 12px; text-transform: uppercase; letter-spacing: 0.05em;">SOLID — tocá cada letra</p>
+    <div style="display:flex; flex-direction:column; gap:8px" id="solid">
+      <div class="acc-row" data-tone="pro">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+          <span class="acc-badge">S</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Single Responsibility</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Una clase debe tener una única razón para cambiar, es decir, debe hacer una sola cosa.</p>
+      </div>
+      <div class="acc-row" data-tone="pro">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+          <span class="acc-badge">O</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Open/Closed</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Las entidades de software deben estar abiertas para ser extendidas, pero cerradas para ser modificadas.</p>
+      </div>
+      <div class="acc-row" data-tone="pro">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+          <span class="acc-badge">L</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Liskov Substitution</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Un método que usa una referencia a la clase base debe poder usar objetos de sus clases derivadas sin necesidad de conocerlas: una subclase debe poder reemplazar a su superclase.</p>
+      </div>
+      <div class="acc-row" data-tone="pro">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+          <span class="acc-badge">I</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Interface Segregation</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Es mejor tener varias interfaces específicas para cada cliente que una única interfaz de propósitos generales.</p>
+      </div>
+      <div class="acc-row" data-tone="pro">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+          <span class="acc-badge">D</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Dependency Inversion</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Lo concreto debe depender de lo abstracto, nunca al revés. Los módulos de alto y bajo nivel deben depender de abstracciones.</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p style="font-size:13px; font-weight:600; color:#94a3b8; margin:0 0 12px; text-transform: uppercase; letter-spacing: 0.05em;">Relaciones UML — tocá cada una</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px" id="uml">
+      <div class="acc-box">
+        <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+          <span style="font-size:16px; color: #a7f3d0; font-family: monospace;">──▷</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Herencia</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Proposición "es un". La subclase recibe todos los componentes públicos y protegidos de la superclase. Ocurre en tiempo de diseño, no de ejecución.</p>
+      </div>
+      <div class="acc-box">
+        <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+          <span style="font-size:16px; color: #a7f3d0; font-family: monospace;">┄┄▷</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Implementación</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Relación entre una clase y una interfaz: la clase implementa las capacidades que define la interfaz.</p>
+      </div>
+      <div class="acc-box">
+        <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+          <span style="font-size:16px; color: #60a5fa; font-family: monospace;">──&gt;</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Asociación</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Objetos que colaboran entre sí. No es una relación fuerte: el tiempo de vida de un objeto no depende del otro. Puede ser unidireccional o bidireccional.</p>
+      </div>
+      <div class="acc-box">
+        <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+          <span style="font-size:16px; color: #34d399; font-family: monospace;">◇──&gt;</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Agregación</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Variante de asociación, "tiene un" de tipo parte-todo. Si la clase contenedora deja de existir, las clases contenidas pueden seguir existiendo.</p>
+      </div>
+      <div class="acc-box">
+        <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+          <span style="font-size:16px; color: #34d399; font-family: monospace;">◆──&gt;</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Composición</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Tipo de agregación más restrictivo: cada parte pertenece a un solo todo. Si la clase contenedora deja de existir, las contenidas también.</p>
+      </div>
+      <div class="acc-box">
+        <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+          <span style="font-size:16px; color: #94a3b8; font-family: monospace;">┄┄&gt;</span>
+          <span style="font-size:13px; font-weight:600; flex:1">De uso</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Una clase usa a otra como parámetro de una operación o la instancia localmente. El objeto no se guarda como atributo permanente.</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p style="font-size:13px; font-weight:600; color:#94a3b8; margin:0 0 12px; text-transform: uppercase; letter-spacing: 0.05em;">Diagrama de clases vs. de secuencia</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px" id="diagramas">
+      <div class="acc-card">
+        <div class="acc-head-card" onclick="toggleAcc(this.parentElement)">
+          <span style="font-size:16px; color: #38bdf8; margin-right: 4px;">📂</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Clases</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Vista estática, "una foto" del sistema. Muestra atributos, métodos y relaciones. Surge del análisis de responsabilidades de los objetos.</p>
+      </div>
+      <div class="acc-card">
+        <div class="acc-head-card" onclick="toggleAcc(this.parentElement)">
+          <span style="font-size:16px; color: #ec4899; margin-right: 4px;">⚡</span>
+          <span style="font-size:13px; font-weight:600; flex:1">Secuencia</span>
+          <i class="acc-chev">▼</i>
+        </div>
+        <p class="acc-detail">Vista dinámica, "el diagrama de clases en movimiento". Muestra mensajes, activaciones y líneas de vida a través del tiempo. Se arma a partir de un caso de uso.</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p style="font-size:13px; font-weight:600; color:#94a3b8; margin:0 0 12px; text-transform: uppercase; letter-spacing: 0.05em;">Antipatrones frecuentes — tocá cada uno</p>
+    <div style="display:flex; flex-direction:column; gap:8px" id="anti">
+      <div class="acc-row" data-tone="danger">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px; font-weight:600; flex:1">Objeto todopoderoso</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Toda la funcionalidad se concentra en un solo objeto, en vez de repartirse en responsabilidades separadas.</p>
+      </div>
+      <div class="acc-row" data-tone="danger">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px; font-weight:600; flex:1">Clase gorda</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Una clase con demasiados atributos y métodos, que termina siendo responsable de lógica de negocio que no le corresponde.</p>
+      </div>
+      <div class="acc-row" data-tone="danger">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px; font-weight:600; flex:1">Modelo de dominio anémico</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Objetos que solo llevan datos, sin ninguna lógica de negocio propia. No es realmente orientado a objetos.</p>
+      </div>
+      <div class="acc-row" data-tone="danger">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px; font-weight:600; flex:1">Singletonitis</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Abuso del patrón Singleton (o de cualquier patrón) en lugares donde no es necesario ni adecuado.</p>
+      </div>
+      <div class="acc-row" data-tone="danger">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px; font-weight:600; flex:1">Fábrica de combustible</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Diseñar de manera innecesariamente compleja: sobre-modelar funcionalidad que no se sabe si se va a necesitar.</p>
+      </div>
+      <div class="acc-row" data-tone="danger">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px; font-weight:600; flex:1">Gran bola de lodo</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Construir un sistema sin ninguna estructura definida. Sin estructura, la implementación se desmorona.</p>
+      </div>
+      <div class="acc-row" data-tone="danger">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px; font-weight:600; flex:1">Acoplamiento secuencial</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Una clase cuyos métodos deben invocarse en un orden determinado para funcionar; si se llaman en otro orden, se rompe.</p>
+      </div>
+      <div class="acc-row" data-tone="danger">
+        <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px; font-weight:600; flex:1">Problema del yoyó</span><i class="acc-chev">▼</i></div>
+        <p class="acc-detail">Estructuras de herencia tan fragmentadas que se vuelven difíciles de seguir y entender.</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
-var quizData = [
-{q:"¿Qué visibilidad deben tener SIEMPRE los atributos de un objeto, según las buenas prácticas vistas?", options:["Pública","Privada","Protegida","Depende del atributo"], correct:1, exp:"Los atributos deben ser siempre privados para asegurar el encapsulamiento; la visibilidad variable aplica sobre todo a los métodos."},
-{q:"La firma de un método incluye:", options:["Solo el nombre del método","El nombre más los parámetros que recibe y devuelve","Solo el tipo de retorno","El nombre más la visibilidad de la clase"], correct:1, exp:"La firma es la forma de definir al método: su nombre y los parámetros de entrada y salida."},
-{q:"¿Qué modificador de visibilidad permite el acceso desde las subclases, pero no desde afuera de ellas?", options:["Público (+)","Privado (-)","Protegido (#)","Default (~)"], correct:2, exp:"Protegido (#) se copia a la subclase pero no está disponible fuera de ella; default (~) es a nivel de paquete."},
-{q:"Si dos clases tienen una relación de Asociación bidireccional, esto significa que:", options:["Solo una le puede pedir a la otra","Ambas se pueden pedir mutuamente","El tiempo de vida de una depende de la otra","Es funcionalmente idéntica a una composición"], correct:1, exp:"La navegabilidad bidireccional implica que ambos objetos tienen referencia mutua entre sí."},
-{q:"¿Cuál es la diferencia clave entre Agregación y Composición?", options:["No hay ninguna diferencia real","En composición el objeto contenido puede pertenecer a varios todos; en agregación no","En composición cada parte pertenece a un solo todo y muere con él; en agregación puede sobrevivir","La agregación siempre usa diamante relleno"], correct:2, exp:"Composición es más restrictiva: cada componente pertenece a un solo todo y su vida depende del contenedor. En Agregación, la parte puede sobrevivir al todo."},
-{q:"La multiplicidad \"0..*\" indica:", options:["Exactamente cero instancias","De cero a varias instancias","De una a varias instancias","Solo una instancia"], correct:1, exp:"0..* significa de cero a varios, según el cuadro de multiplicidad de tus apuntes."},
-{q:"Un Diagrama de Clases se podría describir informalmente como:", options:["El diagrama de secuencia en reposo","Una foto del sistema","Un caso de uso gráfico","Un diagrama de paquetes expandido"], correct:1, exp:"La teoría lo describe como \"básicamente una foto del sistema\", en contraste con el diagrama de secuencia, que es dinámico."},
-{q:"En un Diagrama de Secuencia, la destrucción temprana de un objeto se representa con:", options:["Un rombo relleno","Una flecha etiquetada <<destruir>> que apunta a una X","Una línea de vida más larga","Un rectángulo con calificador LOOP"], correct:1, exp:"Los objetos pueden eliminarse tempranamente con una flecha <<destruir>> que apunta a una X al final de la línea de vida."},
-{q:"¿Cuál de estas NO es una característica de una interfaz en Java?", options:["Solo tiene métodos abstractos (salvo default/static desde Java 8)","Sus variables son finales por defecto","Puede tener atributos protegidos con lógica propia","Sus métodos son públicos y abstractos implícitamente"], correct:2, exp:"Una interfaz no tiene atributos con lógica propia ni modificadores como protegido: solo constantes finales y métodos abstractos."},
-{q:"Si una clase de Facturación además envía emails y genera reportes PDF, ¿qué principio SOLID está violando más directamente?", options:["Liskov Substitution","Single Responsibility","Interface Segregation","Open/Closed"], correct:1, exp:"Tener más de una razón para cambiar (facturar, enviar emails, generar PDFs) es una violación directa de Single Responsibility."},
-{q:"El principio de Inversión de Dependencias (DIP) establece que:", options:["Los módulos de bajo nivel deben depender de los de alto nivel","Tanto los módulos de alto como de bajo nivel deben depender de abstracciones","Las abstracciones deben depender de los detalles","No debe existir ningún tipo de dependencia entre módulos"], correct:1, exp:"DIP invierte la noción unconventional: ambos niveles dependen de abstracciones, y los detalles dependen de lo abstracto, no al revés."},
-{q:"Alta cohesión y bajo acoplamiento son deseables porque:", options:["Un módulo hace muchas cosas no relacionadas y depende de muchos otros módulos","Las tareas de un módulo están enfocadas en su propósito y depende lo mínimo posible de otros módulos","Son conceptos opuestos que no pueden buscarse a la vez","Solo aplican a la capa de presentación"], correct:1, exp:"Más cohesión y menos acoplamiento son ambos indicadores de mayor calidad de diseño, y se buscan simultáneamente."},
-{q:"En la arquitectura de \"Capas Estrictas\" (Strict Layering):", options:["Cualquier capa puede invocar a cualquier otra libremente","Cada capa solo puede invocar a la que está directamente debajo de ella","Solo puede existir una capa","Todas las capas deben estar en la misma máquina física"], correct:1, exp:"En capas estrictas, cada capa solo invoca a la que tiene directamente debajo, a diferencia del \"salto de capas\"."},
-{q:"¿Qué distingue a la arquitectura de N-capas del estilo de capas simple?", options:["N-capas no tiene capa de datos","En N-capas, cada segmento reside en un computador físicamente separado","N-capas no permite más de dos capas","Son exactamente lo mismo"], correct:1, exp:"El estilo por capas puede convivir en la misma máquina; N-capas separa físicamente cada capa en distintos servidores."},
-{q:"Los patrones de diseño del GoF se documentaron por primera vez en los lenguajes:", options:["Java y C#","C/C++ y Smalltalk","Python y Java","C# y Smalltalk"], correct:1, exp:"El grupo GoF descubrió sus ~20 patrones iniciales documentados en C/C++ y Smalltalk, entre 1994 y 1995."},
-{q:"La \"Motivación\" de un patrón, según la teoría, se suele explicar en:", options:["Un diagrama de clases completo","Un párrafo breve, de 3 a 6 líneas","Un ejemplo de código funcional","Una tabla comparativa de todos los patrones"], correct:1, exp:"La motivación explica el problema recurrente en un párrafo breve, típicamente de 3 a 6 líneas."},
-{q:"¿Cuál de estos patrones pertenece a la categoría Creacional?", options:["Composite","Observer","Abstract Factory","Adapter"], correct:2, exp:"Abstract Factory es Creacional; Composite y Adapter son Estructurales, y Observer es de Comportamiento."},
-{q:"Singleton se implementa correctamente con:", options:["Constructor público y atributo privado no estático","Constructor privado + atributo estático y privado + método estático y público para obtener la instancia","Constructor protegido y método privado sin retorno","Sin constructor definido"], correct:1, exp:"Esa es la implementación clásica de Singleton según tus apuntes: constructor privado, atributo estático privado, y getInstance() estático público."},
-{q:"Un Strategy concreto puede convertirse en Singleton solo si:", options:["Siempre, cualquier Strategy puede ser Singleton sin condiciones","Tiene un estado interno NO compartido por toda la aplicación","Tiene un estado interno que SÍ es compartido por toda la aplicación","Strategy y Singleton son mutuamente excluyentes"], correct:1, exp:"Según tu apunte extra: si un Strategy concreto tiene un estado interno no compartido por toda la aplicación, puede ser Singleton."},
-{q:"Singleton puede reducir la proliferación de objetos con Strategy:", options:["Siempre, en cualquier caso","Nunca, son conceptos incompatibles","Solo si la estrategia NO requiere una instancia para cada consumidor","Solo si hay más de 10 consumidores"], correct:2, exp:"Tu apunte extra lo aclara: Singleton puede solucionar la proliferación de objetos con Strategy solo si la estrategia no requiere una instancia por consumidor."},
-{q:"¿Qué patrón permite tratar objetos simples y compuestos del mismo modo?", options:["Composite","Proxy","Command","State"], correct:0, exp:"Composite simplifica el tratamiento uniforme de objetos simples y compuestos."},
-{q:"El patrón Proxy, según tu resumen, se caracteriza por:", options:["Encapsular una operación en un objeto","Proporcionar un sustituto de otro objeto y controlar el acceso a él","Notificar automáticamente a observadores","Definir una interfaz estándar de creación"], correct:1, exp:"Proxy da un sustituto de otro objeto y controla el acceso, permitiendo actuar antes o después de que la solicitud llegue al original."},
-{q:"Diferencia clave entre State y Strategy:", options:["Son sinónimos exactos","State cambia el comportamiento según el estado interno; Strategy elige explícitamente qué algoritmo usar en tiempo de ejecución","State es Creacional y Strategy es Estructural","Strategy no permite cambios en tiempo de ejecución"], correct:1, exp:"State reacciona a cambios de estado interno; Strategy permite elegir explícitamente entre varios algoritmos disponibles."},
-{q:"El antipatrón \"Fábrica de combustible\" (Gas Factory) describe:", options:["Un sistema sin estructura definida","Diseñar de forma innecesariamente compleja, sobre-modelando","Reusar objetos inadecuados para el fin que se persigue","Heredar funcionalidad de una clase utilidad"], correct:1, exp:"Gas Factory es diseñar por demás, sobre-modelar funcionalidad que no se sabe si se va a necesitar. No confundir con Gran bola de lodo, que es la falta de estructura."},
-{q:"\"Base Bean\" es un antipatrón que consiste en:", options:["Validar mal las entradas del sistema","Heredar funcionalidad de una clase utilidad en lugar de delegar lo que se necesite","Usar demasiadas capas innecesarias","Construir una clase con métodos que deben llamarse en orden"], correct:1, exp:"Base Bean es heredar de una clase utilidad en vez de delegar, generando acoplamiento innecesario por herencia."},
-{q:"En el patrón de arquitectura MVC, ¿qué capa dirige el flujo de datos entre la vista y el modelo?", options:["La vista","El modelo","El controlador","MVC no separa esa responsabilidad en una capa"], correct:2, exp:"El controlador atiende lo que sucede en la vista y sabe hacia dónde dirigir los datos y el flujo."},
-{q:"Emplear objetos cuyo único propósito es pasar información a otros objetos sin aportar valor ni transformarla es el antipatrón:", options:["Poltergeist","Objeto Sumidero","Problema del yoyó","Interfaz inflada"], correct:0, exp:"Poltergeist describe objetos que solo pasan información a terceros sin aportar valor ni realizar transformaciones."},
-{q:"¿Cuál de las siguientes NO es una de las cinco relaciones UML vistas en el curso?", options:["Composición","Agregación","Herencia múltiple","De Uso"], correct:2, exp:"Las cinco relaciones del curso son Generalización/Especialización, Agregación, Composición, Asociación y De Uso. \"Herencia múltiple\" no figura como una de ellas."}
-];
+// Función para colapsar/desplegar con suavidad
+function toggleAcc(el){
+  var isOpen = el.classList.toggle('open');
+  var d = el.querySelector('.acc-detail');
+  if(d) d.style.display = isOpen ? 'block' : 'none';
+}
 
-var container = document.getElementById('quiz');
-var answered = 0, correctCount = 0;
+// Ocultar detalles por defecto
+document.querySelectorAll('.acc-detail').forEach(function(d){ d.style.display = 'none'; });
 
-quizData.forEach(function(item, qi){
-  var card = document.createElement('div');
-  card.style.background = 'var(--surface-1, #ffffff)';
-  card.style.borderRadius = '16px';
-  card.style.padding = '20px';
-  card.style.border = '1px solid var(--border, #e2e8f0)';
-  card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.02)';
-  card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+// Mapeo de paleta de colores para el tema oscuro
+var toneBg = {
+  pro: 'rgba(139, 92, 246, 0.1)',      // Violeta sutil
+  accent: 'rgba(59, 130, 246, 0.1)',    // Azul sutil
+  success: 'rgba(16, 185, 129, 0.1)',   // Verde sutil
+  warning: 'rgba(234, 179, 8, 0.1)',    // Amarillo sutil
+  danger: 'rgba(239, 68, 68, 0.1)'      // Rojo sutil
+};
 
-  var qEl = document.createElement('p');
-  qEl.style.fontSize = '14px';
-  qEl.style.fontWeight = '600';
-  qEl.style.color = 'var(--text-main, #0f172a)';
-  qEl.style.margin = '0 0 16px';
-  qEl.style.lineHeight = '1.5';
-  qEl.textContent = (qi+1) + '. ' + item.q;
-  card.appendChild(qEl);
+var toneBorder = {
+  pro: 'rgba(139, 92, 246, 0.4)',
+  accent: 'rgba(59, 130, 246, 0.4)',
+  success: 'rgba(16, 185, 129, 0.4)',
+  warning: 'rgba(234, 179, 8, 0.4)',
+  danger: 'rgba(239, 68, 68, 0.3)'
+};
 
-  var optsWrap = document.createElement('div');
-  optsWrap.style.display = 'flex';
-  optsWrap.style.flexDirection = 'column';
-  optsWrap.style.gap = '8px';
+var toneText = {
+  pro: '#a78bfa',
+  accent: '#60a5fa',
+  success: '#34d399',
+  warning: '#facc15',
+  danger: '#f87171'
+};
 
-  var explEl = document.createElement('p');
-  explEl.style.fontSize = '13px';
-  explEl.style.lineHeight = '1.5';
-  explEl.style.margin = '14px 0 0';
-  explEl.style.padding = '12px 14px';
-  explEl.style.borderRadius = '10px';
-  explEl.style.display = 'none';
+var toneFill = {
+  pro: '#8b5cf6',
+  accent: '#3b82f6',
+  success: '#10b981',
+  warning: '#eab308',
+  danger: '#ef4444'
+};
 
-  item.options.forEach(function(optText, oi){
-    var opt = document.createElement('div');
-    opt.textContent = optText;
-    opt.style.fontSize = '13px';
-    opt.style.fontWeight = '500';
-    opt.style.color = 'var(--text-main, #334155)';
-    opt.style.padding = '10px 14px';
-    opt.style.borderRadius = '10px';
-    opt.style.border = '1px solid var(--border, #e2e8f0)';
-    opt.style.background = 'var(--surface-2, #f8fafc)';
-    opt.style.cursor = 'pointer';
-    opt.style.transition = 'all 0.15s ease';
-    opt.setAttribute('role','button');
-    opt.setAttribute('tabindex','0');
+// 1. Aplicando estilos a PATRONES
+document.querySelectorAll('#patrones .acc').forEach(function(c){
+  var tone = c.getAttribute('data-tone');
+  c.style.background = toneBg[tone];
+  c.style.border = '1px solid ' + toneBorder[tone];
+  c.style.color = toneText[tone];
+  c.style.borderRadius = '12px';
+  c.style.padding = '12px 14px';
+  c.style.cursor = 'pointer';
+  c.style.transition = 'transform 0.15s ease, box-shadow 0.15s ease';
 
-    // Efecto Hover táctil y visual
-    opt.onmouseenter = function() {
-      if(!card.dataset.answered) {
-        opt.style.background = 'var(--border, #cbd5e1)';
-        opt.style.transform = 'translateX(4px)';
-      }
-    };
-    opt.onmouseleave = function() {
-      if(!card.dataset.answered) {
-        opt.style.background = 'var(--surface-2, #f8fafc)';
-        opt.style.transform = 'none';
-      }
-    };
+  var head = c.querySelector('.acc-head');
+  head.style.display = 'flex';
+  head.style.justifyContent = 'space-between';
+  head.style.alignItems = 'center';
+  head.style.fontSize = '14px';
+  head.style.fontWeight = '600';
 
-    opt.onclick = function(){
-      if(card.dataset.answered) return;
-      card.dataset.answered = '1';
-      answered++;
-      var isCorrect = oi === item.correct;
-      if(isCorrect) correctCount++;
-
-      Array.prototype.forEach.call(optsWrap.children, function(child, ci){
-        child.style.transform = 'none';
-        if(ci === item.correct){
-          child.style.background = 'var(--bg-success, #dcfce7)';
-          child.style.color = 'var(--text-success, #15803d)';
-          child.style.borderColor = 'var(--border-success, #bbf7d0)';
-        } else if(ci === oi){
-          child.style.background = 'var(--bg-danger, #fee2e2)';
-          child.style.color = 'var(--text-danger, #b91c1c)';
-          child.style.borderColor = 'var(--border-danger, #fecaca)';
-        } else {
-          child.style.opacity = '0.4';
-        }
-      });
-
-      if(isCorrect) {
-        explEl.style.background = 'rgba(16,185,129,0.06)';
-        explEl.style.color = '#15803d';
-        explEl.style.borderLeft = '4px solid #10b981';
-        explEl.innerHTML = '<strong>✨ Correcto:</strong> ' + item.exp;
-      } else {
-        explEl.style.background = 'rgba(239,68,68,0.06)';
-        explEl.style.color = '#b91c1c';
-        explEl.style.borderLeft = '4px solid #ef4444';
-        explEl.innerHTML = '<strong>❌ Incorrecto:</strong> ' + item.exp;
-      }
-      explEl.style.display = 'block';
-
-      document.getElementById('score-text').textContent = answered + ' / ' + quizData.length + ' respondidas';
-      document.getElementById('score-correct').textContent = correctCount + ' correctas';
-    };
-
-    optsWrap.appendChild(opt);
-  });
-
-  card.appendChild(optsWrap);
-  card.appendChild(explEl);
-  container.appendChild(card);
+  var detail = c.querySelector('.acc-detail');
+  detail.style.fontSize = '12px';
+  detail.style.color = '#cbd5e1';
+  detail.style.marginTop = '8px';
+  detail.style.lineHeight = '1.5';
 });
+
+// 2. Aplicando estilos a SOLID y ANTIPATRONES
+document.querySelectorAll('#solid .acc-row, #anti .acc-row').forEach(function(c){
+  var tone = c.getAttribute('data-tone');
+  c.style.background = '#1e293b';
+  c.style.border = '1px solid #334155';
+  c.style.borderRadius = '12px';
+  c.style.padding = '12px 16px';
+  c.style.cursor = 'pointer';
+  c.style.transition = 'background-color 0.15s ease';
+
+  var head = c.querySelector('.acc-head-row');
+  if(head) {
+    head.style.display = 'flex';
+    head.style.alignItems = 'center';
+    head.style.justifyContent = 'space-between';
+    head.style.gap = '12px';
+  }
+
+  var badge = c.querySelector('.acc-badge');
+  if(badge){
+    badge.style.background = toneFill[tone];
+    badge.style.color = '#0f172a';
+    badge.style.width = '24px'; badge.style.height = '24px';
+    badge.style.borderRadius = '6px';
+    badge.style.display = 'flex'; badge.style.alignItems = 'center'; badge.style.justifyContent = 'center';
+    badge.style.fontSize = '13px'; badge.style.fontWeight = '700'; badge.style.flexShrink = '0';
+  }
+
+  var detail = c.querySelector('.acc-detail');
+  detail.style.fontSize = '12px';
+  detail.style.color = '#94a3b8';
+  detail.style.marginTop = '10px';
+  detail.style.paddingTop = '8px';
+  detail.style.borderTop = '1px dashed #334155';
+  detail.style.lineHeight = '1.5';
+});
+
+// 3. Aplicando estilos a RELACIONES UML
+document.querySelectorAll('#uml .acc-box').forEach(function(c){
+  c.style.background = '#1e293b';
+  c.style.border = '1px solid #334155';
+  c.style.borderRadius = '12px';
+  c.style.padding = '12px 14px';
+  c.style.cursor = 'pointer';
+  c.style.transition = 'border-color 0.15s ease';
+
+  var head = c.querySelector('.acc-head-box');
+  head.style.display = 'flex';
+  head.style.alignItems = 'center';
+  head.style.gap = '10px';
+
+  var detail = c.querySelector('.acc-detail');
+  detail.style.fontSize = '12px';
+  detail.style.color = '#94a3b8';
+  detail.style.marginTop = '10px';
+  detail.style.paddingTop = '8px';
+  detail.style.borderTop = '1px dashed #334155';
+  detail.style.lineHeight = '1.5';
+});
+
+// 4. Aplicando estilos a COMPARATIVA DIAGRAMAS (DC vs DS)
+document.querySelectorAll('#diagramas .acc-card').forEach(function(c){
+  c.style.background = '#1e293b';
+  c.style.border = '1px solid #334155';
+  c.style.borderRadius = '12px';
+  c.style.padding = '14px 16px';
+  c.style.cursor = 'pointer';
+
+  var head = c.querySelector('.acc-head-card');
+  head.style.display = 'flex';
+  head.style.alignItems = 'center';
+  head.style.justifyContent = 'space-between';
+  head.style.gap = '8px';
+
+  var detail = c.querySelector('.acc-detail');
+  detail.style.fontSize = '12px';
+  detail.style.color = '#cbd5e1';
+  detail.style.marginTop = '10px';
+  detail.style.paddingTop = '8px';
+  detail.style.borderTop = '1px dashed #334155';
+  detail.style.lineHeight = '1.5';
+});
+
+// Estilos globales e interactividad de iconos
+document.querySelectorAll('.acc-chev').forEach(function(i){
+  i.style.fontStyle = 'normal';
+  i.style.fontSize = '10px';
+  i.style.color = '#64748b';
+  i.style.transition = 'transform .2s ease-in-out';
+  i.style.flexShrink = '0';
+});
+
+// Inyección de estilos de transición en hover y animación rotación de flecha
+var style = document.createElement('style');
+style.textContent = `
+  .open .acc-chev { transform: rotate(180deg); color: #f1f5f9 !important; }
+  .acc:hover, .acc-row:hover, .acc-box:hover, .acc-card:hover { border-color: #475569 !important; background-color: #1e293b; }
+`;
+document.head.appendChild(style);
 </script>
