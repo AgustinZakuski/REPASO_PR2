@@ -1,14 +1,17 @@
-<div style="display:flex;flex-direction:column;gap:16px;padding:1rem 0">
-<h2 class="sr-only">Cuestionario interactivo de repaso de Programación II con 28 preguntas de opción múltiple y corrección automática</h2>
+<div style="display:flex; flex-direction:column; gap:20px; padding:1.5rem 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <h2 class="sr-only">Cuestionario interactivo de repaso de Programación II con 28 preguntas de opción múltiple y corrección automática</h2>
 
-<div id="score-bar" style="display:flex;align-items:center;justify-content:space-between;background:var(--surface-1);border-radius:var(--radius);padding:10px 14px;position:sticky;top:0;z-index:1">
-  <span id="score-text" style="font-size:13px;color:var(--text-secondary)">0 / 28 respondidas</span>
-  <span id="score-correct" style="font-size:13px;font-weight:500">0 correctas</span>
+  <div id="score-bar" style="display:flex; align-items:center; justify-content:between; background:rgba(var(--surface-1-rgb, 255, 255, 255), 0.85); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid var(--border, #e2e8f0); border-radius:14px; padding:14px 20px; position:sticky; top:12px; z-index:10; box-shadow:0 4px 20px -2px rgba(0,0,0,0.05);">
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <span id="score-text" style="font-size:13px; font-weight:600; color:var(--text-main, #1e293b)">0 / 28 respondidas</span>
+      <span style="font-size:11px; color:var(--text-secondary, #64748b)">Progreso de repaso</span>
+    </div>
+    <span id="score-correct" style="font-size:14px; font-weight:700; color:#10b981; background:rgba(16,185,129,0.1); padding:6px 12px; border-radius:20px;">0 correctas</span>
+  </div>
+
+  <div id="quiz" style="display:flex; flex-direction:column; gap:16px;"></div>
 </div>
 
-<div id="quiz" style="display:flex;flex-direction:column;gap:12px"></div>
-
-</div>
 <script>
 var quizData = [
 {q:"¿Qué visibilidad deben tener SIEMPRE los atributos de un objeto, según las buenas prácticas vistas?", options:["Pública","Privada","Protegida","Depende del atributo"], correct:1, exp:"Los atributos deben ser siempre privados para asegurar el encapsulamiento; la visibilidad variable aplica sobre todo a los métodos."},
@@ -21,7 +24,7 @@ var quizData = [
 {q:"En un Diagrama de Secuencia, la destrucción temprana de un objeto se representa con:", options:["Un rombo relleno","Una flecha etiquetada <<destruir>> que apunta a una X","Una línea de vida más larga","Un rectángulo con calificador LOOP"], correct:1, exp:"Los objetos pueden eliminarse tempranamente con una flecha <<destruir>> que apunta a una X al final de la línea de vida."},
 {q:"¿Cuál de estas NO es una característica de una interfaz en Java?", options:["Solo tiene métodos abstractos (salvo default/static desde Java 8)","Sus variables son finales por defecto","Puede tener atributos protegidos con lógica propia","Sus métodos son públicos y abstractos implícitamente"], correct:2, exp:"Una interfaz no tiene atributos con lógica propia ni modificadores como protegido: solo constantes finales y métodos abstractos."},
 {q:"Si una clase de Facturación además envía emails y genera reportes PDF, ¿qué principio SOLID está violando más directamente?", options:["Liskov Substitution","Single Responsibility","Interface Segregation","Open/Closed"], correct:1, exp:"Tener más de una razón para cambiar (facturar, enviar emails, generar PDFs) es una violación directa de Single Responsibility."},
-{q:"El principio de Inversión de Dependencias (DIP) establece que:", options:["Los módulos de bajo nivel deben depender de los de alto nivel","Tanto los módulos de alto como de bajo nivel deben depender de abstracciones","Las abstracciones deben depender de los detalles","No debe existir ningún tipo de dependencia entre módulos"], correct:1, exp:"DIP invierte la noción convencional: ambos niveles dependen de abstracciones, y los detalles dependen de lo abstracto, no al revés."},
+{q:"El principio de Inversión de Dependencias (DIP) establece que:", options:["Los módulos de bajo nivel deben depender de los de alto nivel","Tanto los módulos de alto como de bajo nivel deben depender de abstracciones","Las abstracciones deben depender de los detalles","No debe existir ningún tipo de dependencia entre módulos"], correct:1, exp:"DIP invierte la noción unconventional: ambos niveles dependen de abstracciones, y los detalles dependen de lo abstracto, no al revés."},
 {q:"Alta cohesión y bajo acoplamiento son deseables porque:", options:["Un módulo hace muchas cosas no relacionadas y depende de muchos otros módulos","Las tareas de un módulo están enfocadas en su propósito y depende lo mínimo posible de otros módulos","Son conceptos opuestos que no pueden buscarse a la vez","Solo aplican a la capa de presentación"], correct:1, exp:"Más cohesión y menos acoplamiento son ambos indicadores de mayor calidad de diseño, y se buscan simultáneamente."},
 {q:"En la arquitectura de \"Capas Estrictas\" (Strict Layering):", options:["Cualquier capa puede invocar a cualquier otra libremente","Cada capa solo puede invocar a la que está directamente debajo de ella","Solo puede existir una capa","Todas las capas deben estar en la misma máquina física"], correct:1, exp:"En capas estrictas, cada capa solo invoca a la que tiene directamente debajo, a diferencia del \"salto de capas\"."},
 {q:"¿Qué distingue a la arquitectura de N-capas del estilo de capas simple?", options:["N-capas no tiene capa de datos","En N-capas, cada segmento reside en un computador físicamente separado","N-capas no permite más de dos capas","Son exactamente lo mismo"], correct:1, exp:"El estilo por capas puede convivir en la misma máquina; N-capas separa físicamente cada capa en distintos servidores."},
@@ -46,38 +49,63 @@ var answered = 0, correctCount = 0;
 
 quizData.forEach(function(item, qi){
   var card = document.createElement('div');
-  card.style.background = 'var(--surface-1)';
-  card.style.borderRadius = '12px';
-  card.style.padding = '14px';
+  card.style.background = 'var(--surface-1, #ffffff)';
+  card.style.borderRadius = '16px';
+  card.style.padding = '20px';
+  card.style.border = '1px solid var(--border, #e2e8f0)';
+  card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.02)';
+  card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
 
   var qEl = document.createElement('p');
-  qEl.style.fontSize = '13px';
-  qEl.style.fontWeight = '500';
-  qEl.style.margin = '0 0 10px';
+  qEl.style.fontSize = '14px';
+  qEl.style.fontWeight = '600';
+  qEl.style.color = 'var(--text-main, #0f172a)';
+  qEl.style.margin = '0 0 16px';
+  qEl.style.lineHeight = '1.5';
   qEl.textContent = (qi+1) + '. ' + item.q;
   card.appendChild(qEl);
 
   var optsWrap = document.createElement('div');
   optsWrap.style.display = 'flex';
   optsWrap.style.flexDirection = 'column';
-  optsWrap.style.gap = '6px';
+  optsWrap.style.gap = '8px';
 
   var explEl = document.createElement('p');
-  explEl.style.fontSize = '12px';
-  explEl.style.color = 'var(--text-secondary)';
-  explEl.style.margin = '10px 0 0';
+  explEl.style.fontSize = '13px';
+  explEl.style.lineHeight = '1.5';
+  explEl.style.margin = '14px 0 0';
+  explEl.style.padding = '12px 14px';
+  explEl.style.borderRadius = '10px';
   explEl.style.display = 'none';
 
   item.options.forEach(function(optText, oi){
     var opt = document.createElement('div');
     opt.textContent = optText;
-    opt.style.fontSize = '12px';
-    opt.style.padding = '8px 10px';
-    opt.style.borderRadius = 'var(--radius)';
-    opt.style.border = '0.5px solid var(--border)';
+    opt.style.fontSize = '13px';
+    opt.style.fontWeight = '500';
+    opt.style.color = 'var(--text-main, #334155)';
+    opt.style.padding = '10px 14px';
+    opt.style.borderRadius = '10px';
+    opt.style.border = '1px solid var(--border, #e2e8f0)';
+    opt.style.background = 'var(--surface-2, #f8fafc)';
     opt.style.cursor = 'pointer';
+    opt.style.transition = 'all 0.15s ease';
     opt.setAttribute('role','button');
     opt.setAttribute('tabindex','0');
+
+    // Efecto Hover táctil y visual
+    opt.onmouseenter = function() {
+      if(!card.dataset.answered) {
+        opt.style.background = 'var(--border, #cbd5e1)';
+        opt.style.transform = 'translateX(4px)';
+      }
+    };
+    opt.onmouseleave = function() {
+      if(!card.dataset.answered) {
+        opt.style.background = 'var(--surface-2, #f8fafc)';
+        opt.style.transform = 'none';
+      }
+    };
 
     opt.onclick = function(){
       if(card.dataset.answered) return;
@@ -87,20 +115,31 @@ quizData.forEach(function(item, qi){
       if(isCorrect) correctCount++;
 
       Array.prototype.forEach.call(optsWrap.children, function(child, ci){
+        child.style.transform = 'none';
         if(ci === item.correct){
-          child.style.background = 'var(--bg-success)';
-          child.style.color = 'var(--text-success)';
-          child.style.borderColor = 'var(--border-success)';
+          child.style.background = 'var(--bg-success, #dcfce7)';
+          child.style.color = 'var(--text-success, #15803d)';
+          child.style.borderColor = 'var(--border-success, #bbf7d0)';
         } else if(ci === oi){
-          child.style.background = 'var(--bg-danger)';
-          child.style.color = 'var(--text-danger)';
-          child.style.borderColor = 'var(--border-danger)';
+          child.style.background = 'var(--bg-danger, #fee2e2)';
+          child.style.color = 'var(--text-danger, #b91c1c)';
+          child.style.borderColor = 'var(--border-danger, #fecaca)';
         } else {
-          child.style.opacity = '0.5';
+          child.style.opacity = '0.4';
         }
       });
 
-      explEl.textContent = (isCorrect ? 'Correcto. ' : 'Incorrecto. ') + item.exp;
+      if(isCorrect) {
+        explEl.style.background = 'rgba(16,185,129,0.06)';
+        explEl.style.color = '#15803d';
+        explEl.style.borderLeft = '4px solid #10b981';
+        explEl.innerHTML = '<strong>✨ Correcto:</strong> ' + item.exp;
+      } else {
+        explEl.style.background = 'rgba(239,68,68,0.06)';
+        explEl.style.color = '#b91c1c';
+        explEl.style.borderLeft = '4px solid #ef4444';
+        explEl.innerHTML = '<strong>❌ Incorrecto:</strong> ' + item.exp;
+      }
       explEl.style.display = 'block';
 
       document.getElementById('score-text').textContent = answered + ' / ' + quizData.length + ' respondidas';
