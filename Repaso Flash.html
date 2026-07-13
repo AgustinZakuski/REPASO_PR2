@@ -1,0 +1,320 @@
+<div style="display:flex;flex-direction:column;gap:28px;padding:1rem 0">
+<h2 class="sr-only">Repaso visual interactivo de Programación II: tocá cada tarjeta para desplegar el detalle</h2>
+
+<!-- PATRONES -->
+<div>
+  <p style="font-size:13px;color:var(--text-secondary);margin:0 0 10px">Patrones de diseño — tocá cada uno</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px" id="patrones">
+    <div class="acc" data-tone="warning">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Singleton</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Garantiza que exista una única instancia de un objeto. Se implementa con constructor privado, atributo estático y privado, y un método estático y público para obtener la instancia. Nivel de uso: muy alto.</p>
+    </div>
+    <div class="acc" data-tone="warning">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Factory Method</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Define una interfaz estándar para crear objetos de una familia, sin exponer la clase concreta que se instancia. Nivel de uso: alto. Tiene una variante llamada Simple Factory.</p>
+    </div>
+    <div class="acc" data-tone="warning">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Abstract Factory</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Centraliza la fabricación de objetos de distintas familias en un solo lugar. Nivel de uso: bajo, visto como introducción en la materia.</p>
+    </div>
+    <div class="acc" data-tone="accent">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Adapter</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Adapta un objeto o interfaz para que pueda ser usado por otro objeto que, de otro modo, no podría usarlo. Nivel de uso: muy alto.</p>
+    </div>
+    <div class="acc" data-tone="accent">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Composite</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Permite tratar a objetos simples y a objetos compuestos de la misma manera, simplificando el código que los usa. Nivel de uso: medio.</p>
+    </div>
+    <div class="acc" data-tone="accent">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Proxy</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Provee un sustituto de otro objeto y controla el acceso a él, permitiendo hacer algo antes o después de que la solicitud llegue al objeto original.</p>
+    </div>
+    <div class="acc" data-tone="success">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>State</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Se usa cuando un objeto necesita modificar su comportamiento cada vez que cambia su estado interno. Nivel de uso: alto.</p>
+    </div>
+    <div class="acc" data-tone="success">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Strategy</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Permite disponer de varios métodos o algoritmos para resolver un problema, y elegir cuál usar en tiempo de ejecución. Nivel de uso: alto.</p>
+    </div>
+    <div class="acc" data-tone="success">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Observer</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Define una dependencia entre un sujeto y muchos observadores: cuando el sujeto cambia de estado, todos los observadores se actualizan automáticamente. Nivel de uso: alto.</p>
+    </div>
+    <div class="acc" data-tone="success">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)"><span>Command</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Encapsula una operación dentro de un objeto, permitiendo ejecutarla sin que quien la invoca conozca su contenido. Nivel de uso: medio.</p>
+    </div>
+  </div>
+  <div style="display:flex;gap:14px;margin-top:10px;font-size:12px;color:var(--text-secondary)">
+    <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--fill-warning);margin-right:5px"></span>Creacionales</span>
+    <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--fill-accent);margin-right:5px"></span>Estructurales</span>
+    <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--fill-success);margin-right:5px"></span>Comportamiento</span>
+  </div>
+</div>
+
+<!-- SOLID -->
+<div>
+  <p style="font-size:13px;color:var(--text-secondary);margin:0 0 10px">SOLID — tocá cada letra</p>
+  <div style="display:flex;flex-direction:column;gap:6px" id="solid">
+    <div class="acc-row" data-tone="pro">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-badge">S</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Single Responsibility</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Una clase debe tener una única razón para cambiar, es decir, debe hacer una sola cosa.</p>
+    </div>
+    <div class="acc-row" data-tone="pro">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-badge">O</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Open/Closed</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Las entidades de software deben estar abiertas para ser extendidas, pero cerradas para ser modificadas.</p>
+    </div>
+    <div class="acc-row" data-tone="pro">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-badge">L</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Liskov Substitution</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Un método que usa una referencia a la clase base debe poder usar objetos de sus clases derivadas sin necesidad de conocerlas: una subclase debe poder reemplazar a su superclase.</p>
+    </div>
+    <div class="acc-row" data-tone="pro">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-badge">I</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Interface Segregation</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Es mejor tener varias interfaces específicas para cada cliente que una única interfaz de propósitos generales.</p>
+    </div>
+    <div class="acc-row" data-tone="pro">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-badge">D</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Dependency Inversion</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Lo concreto debe depender de lo abstracto, nunca al revés. Los módulos de alto y bajo nivel deben depender de abstracciones.</p>
+    </div>
+  </div>
+</div>
+
+<!-- UML -->
+<div>
+  <p style="font-size:13px;color:var(--text-secondary);margin:0 0 10px">Relaciones UML — tocá cada una</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="uml">
+    <div class="acc-box">
+      <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+        <span style="font-size:16px">──▷</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Herencia</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Proposición "es un". La subclase recibe todos los componentes públicos y protegidos de la superclase. Ocurre en tiempo de diseño, no de ejecución.</p>
+    </div>
+    <div class="acc-box">
+      <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+        <span style="font-size:16px">┄┄▷</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Implementación</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Relación entre una clase y una interfaz: la clase implementa las capacidades que define la interfaz.</p>
+    </div>
+    <div class="acc-box">
+      <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+        <span style="font-size:16px">──&gt;</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Asociación</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Objetos que colaboran entre sí. No es una relación fuerte: el tiempo de vida de un objeto no depende del otro. Puede ser unidireccional o bidireccional.</p>
+    </div>
+    <div class="acc-box">
+      <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+        <span style="font-size:16px">◇──&gt;</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Agregación</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Variante de asociación, "tiene un" de tipo parte-todo. Si la clase contenedora deja de existir, las clases contenidas pueden seguir existiendo.</p>
+    </div>
+    <div class="acc-box">
+      <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+        <span style="font-size:16px">◆──&gt;</span>
+        <span style="font-size:13px;font-weight:500;flex:1">Composición</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Tipo de agregación más restrictivo: cada parte pertenece a un solo todo. Si la clase contenedora deja de existir, las contenidas también.</p>
+    </div>
+    <div class="acc-box">
+      <div class="acc-head-box" onclick="toggleAcc(this.parentElement)">
+        <span style="font-size:16px">┄┄&gt;</span>
+        <span style="font-size:13px;font-weight:500;flex:1">De uso</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Una clase usa a otra como parámetro de una operación o la instancia localmente. El objeto no se guarda como atributo permanente.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DC vs DS -->
+<div>
+  <p style="font-size:13px;color:var(--text-secondary);margin:0 0 10px">Diagrama de clases vs. de secuencia</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px" id="diagramas">
+    <div class="acc-card">
+      <div class="acc-head-card" onclick="toggleAcc(this.parentElement)">
+        <i class="ti ti-box-multiple" style="font-size:18px" aria-hidden="true"></i>
+        <span style="font-size:14px;font-weight:500;flex:1">Clases</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Vista estática, "una foto" del sistema. Muestra atributos, métodos y relaciones. Surge del análisis de responsabilidades de los objetos.</p>
+    </div>
+    <div class="acc-card">
+      <div class="acc-head-card" onclick="toggleAcc(this.parentElement)">
+        <i class="ti ti-timeline" style="font-size:18px" aria-hidden="true"></i>
+        <span style="font-size:14px;font-weight:500;flex:1">Secuencia</span>
+        <i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i>
+      </div>
+      <p class="acc-detail">Vista dinámica, "el diagrama de clases en movimiento". Muestra mensajes, activaciones y líneas de vida a través del tiempo. Se arma a partir de un caso de uso.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ANTIPATRONES -->
+<div>
+  <p style="font-size:13px;color:var(--text-secondary);margin:0 0 10px">Antipatrones frecuentes — tocá cada uno</p>
+  <div style="display:flex;flex-direction:column;gap:6px" id="anti">
+    <div class="acc-row" data-tone="danger">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px;font-weight:500;flex:1">Objeto todopoderoso</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Toda la funcionalidad se concentra en un solo objeto, en vez de repartirse en responsabilidades separadas.</p>
+    </div>
+    <div class="acc-row" data-tone="danger">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px;font-weight:500;flex:1">Clase gorda</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Una clase con demasiados atributos y métodos, que termina siendo responsable de lógica de negocio que no le corresponde.</p>
+    </div>
+    <div class="acc-row" data-tone="danger">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px;font-weight:500;flex:1">Modelo de dominio anémico</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Objetos que solo llevan datos, sin ninguna lógica de negocio propia. No es realmente orientado a objetos.</p>
+    </div>
+    <div class="acc-row" data-tone="danger">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px;font-weight:500;flex:1">Singletonitis</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Abuso del patrón Singleton (o de cualquier patrón) en lugares donde no es necesario ni adecuado.</p>
+    </div>
+    <div class="acc-row" data-tone="danger">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px;font-weight:500;flex:1">Fábrica de combustible</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Diseñar de manera innecesariamente compleja: sobre-modelar funcionalidad que no se sabe si se va a necesitar.</p>
+    </div>
+    <div class="acc-row" data-tone="danger">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px;font-weight:500;flex:1">Gran bola de lodo</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Construir un sistema sin ninguna estructura definida. Sin estructura, la implementación se desmorona.</p>
+    </div>
+    <div class="acc-row" data-tone="danger">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px;font-weight:500;flex:1">Acoplamiento secuencial</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Una clase cuyos métodos deben invocarse en un orden determinado para funcionar; si se llaman en otro orden, se rompe.</p>
+    </div>
+    <div class="acc-row" data-tone="danger">
+      <div class="acc-head-row" onclick="toggleAcc(this.parentElement)"><span style="font-size:13px;font-weight:500;flex:1">Problema del yoyó</span><i class="ti ti-chevron-down acc-chev" aria-hidden="true"></i></div>
+      <p class="acc-detail">Estructuras de herencia tan fragmentadas que se vuelven difíciles de seguir y entender.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+<script>
+function toggleAcc(el){
+  el.classList.toggle('open');
+  var d = el.querySelector('.acc-detail');
+  if(d) d.style.display = el.classList.contains('open') ? 'block' : 'none';
+}
+document.querySelectorAll('.acc-detail').forEach(function(d){ d.style.display = 'none'; });
+
+var toneBg = {pro:'--bg-pro', accent:'--bg-accent', success:'--bg-success', warning:'--bg-warning', danger:'--bg-danger'};
+var toneText = {pro:'--text-pro', accent:'--text-accent', success:'--text-success', warning:'--text-warning', danger:'--text-danger'};
+var toneFill = {pro:'--fill-pro', accent:'--fill-accent', success:'--fill-success', warning:'--fill-warning', danger:'--fill-danger'};
+
+document.querySelectorAll('#patrones .acc').forEach(function(c){
+  var tone = c.getAttribute('data-tone');
+  c.style.background = 'var(' + toneBg[tone] + ')';
+  c.style.color = 'var(' + toneText[tone] + ')';
+  c.style.borderRadius = '12px';
+  c.style.padding = '12px';
+  c.style.cursor = 'pointer';
+  var head = c.querySelector('.acc-head');
+  head.style.display = 'flex';
+  head.style.justifyContent = 'space-between';
+  head.style.alignItems = 'center';
+  head.style.fontSize = '14px';
+  head.style.fontWeight = '500';
+  var detail = c.querySelector('.acc-detail');
+  detail.style.fontSize = '12px';
+  detail.style.marginTop = '8px';
+  detail.style.lineHeight = '1.5';
+});
+
+document.querySelectorAll('#solid .acc-row, #anti .acc-row').forEach(function(c){
+  var tone = c.getAttribute('data-tone');
+  c.style.background = 'var(--surface-1)';
+  c.style.borderRadius = 'var(--radius)';
+  c.style.padding = '8px 12px';
+  c.style.cursor = 'pointer';
+  var head = c.querySelector('.acc-head-row');
+  head.style.display = 'flex';
+  head.style.alignItems = 'center';
+  head.style.gap = '12px';
+  var badge = c.querySelector('.acc-badge');
+  if(badge){
+    badge.style.background = 'var(' + toneFill[tone] + ')';
+    badge.style.color = 'var(--text-primary)';
+    badge.style.width = '24px'; badge.style.height = '24px';
+    badge.style.borderRadius = '50%';
+    badge.style.display = 'flex'; badge.style.alignItems = 'center'; badge.style.justifyContent = 'center';
+    badge.style.fontSize = '13px'; badge.style.fontWeight = '500'; badge.style.flexShrink = '0';
+  }
+  var detail = c.querySelector('.acc-detail');
+  detail.style.fontSize = '12px';
+  detail.style.color = 'var(--text-secondary)';
+  detail.style.marginTop = '8px';
+  detail.style.marginLeft = badge ? '36px' : '0';
+  detail.style.lineHeight = '1.5';
+});
+
+document.querySelectorAll('#uml .acc-box').forEach(function(c){
+  c.style.border = '0.5px solid var(--border)';
+  c.style.borderRadius = 'var(--radius)';
+  c.style.padding = '10px 12px';
+  c.style.cursor = 'pointer';
+  var head = c.querySelector('.acc-head-box');
+  head.style.display = 'flex';
+  head.style.alignItems = 'center';
+  head.style.gap = '10px';
+  var detail = c.querySelector('.acc-detail');
+  detail.style.fontSize = '12px';
+  detail.style.color = 'var(--text-secondary)';
+  detail.style.marginTop = '8px';
+  detail.style.lineHeight = '1.5';
+});
+
+document.querySelectorAll('#diagramas .acc-card').forEach(function(c){
+  c.style.background = 'var(--surface-1)';
+  c.style.borderRadius = '12px';
+  c.style.padding = '14px';
+  c.style.cursor = 'pointer';
+  var head = c.querySelector('.acc-head-card');
+  head.style.display = 'flex';
+  head.style.alignItems = 'center';
+  head.style.gap = '8px';
+  var detail = c.querySelector('.acc-detail');
+  detail.style.fontSize = '12px';
+  detail.style.color = 'var(--text-secondary)';
+  detail.style.marginTop = '8px';
+  detail.style.lineHeight = '1.5';
+});
+
+document.querySelectorAll('.acc-chev').forEach(function(i){
+  i.style.fontSize = '16px';
+  i.style.transition = 'transform .15s';
+  i.style.flexShrink = '0';
+});
+
+var style = document.createElement('style');
+style.textContent = '.open .acc-chev{transform:rotate(180deg)}';
+document.head.appendChild(style);
+</script>
